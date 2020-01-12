@@ -10,6 +10,13 @@ class TaskListsController < ApplicationController
   def new
   end
 
-  def edit
+  def create
+    @task_list = TaskList.new(name: params[:name])
+    @task_list.save
+    redirect_to("/task_lists/index")
+  end
+
+  def edit  
+    @task_list = TaskList.find_by(id: params[:id])
   end
 end
