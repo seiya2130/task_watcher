@@ -1,5 +1,5 @@
 <%= @task_lists.each do |task_list| %>
     <div>
-        <%= task_list.name %>
+        <%= link_to "#{task_list.name}", "/task_lists/show/#{task_list.id}" %>
     </div>
 <% end %>
