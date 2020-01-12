@@ -7,6 +7,7 @@ class TaskListController < ApplicationController
   end
 
   def show
+    @task_list = TaskList.find_by(id: params[:id])
   end
 
   def edit
