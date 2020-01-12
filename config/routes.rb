@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'task_list/index', to:'task_list#index'
-  get 'task_list/new'
+  get 'task_list/new', to:'task_list#new'
   get 'task_list/show/:id', to:'task_list#show'
   get 'task_list/edit'
   get 'static_pages/top'
