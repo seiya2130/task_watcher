@@ -1,6 +1,11 @@
 <h1>TaskLists#new</h1>
 <p>Find me in app/views/task_lists/new.html.erb</p>
+<% if @task_list.errors.full_messages %>
+<% @task_list.errors.full_messages.each do |message| %>
+    <%= message %>
+<% end %>
+<% end %>
 <%= form_for("/task_lists/create",method: "post") do %>
-    <input name="name"/>
+    <input name="name" value="<%= @task_list.name%>"/>
     <input type="submit" text="登録">
 <% end %>
