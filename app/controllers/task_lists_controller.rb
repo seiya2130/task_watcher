@@ -7,7 +7,7 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.find_by(id: params[:id])
   end
 
-  def new
+  def new   
   end
 
   def create
@@ -26,4 +26,11 @@ class TaskListsController < ApplicationController
     @task_list.save
     redirect_to("/task_lists/index")
   end
+
+  def destroy
+    @task_list = TaskList.find_by(id: params[:id])
+    @task_list.destroy
+    redirect_to("/task_lists/index")
+  end
+
 end
