@@ -1,6 +1,8 @@
 <h1>TaskLists#edit</h1>
 <p>Find me in app/views/task_lists/edit.html.erb</p>
-
+<% @task_list.errors.full_messages.each do |message| %>
+    <%= message %>
+<% end %>
 <%= form_tag("/task_lists/#{@task_list.id}/update") do %>
     <input name="name" value="<%= @task_list.name %>"/>
     <input type="submit" text="登録">
