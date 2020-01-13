@@ -1,5 +1,19 @@
-<%= @task_lists.each do |task_list| %>
-    <div>
-        <%= link_to "#{task_list.name}", "/task_lists/show/#{task_list.id}" %>
+<section class="container">
+    <div class="text-center">
+        <p>検索機能</p>
     </div>
-<% end %>
+    <div class="text-left">
+        <%= link_to "タスクリスト作成", "/task_lists/new" %>   
+    </div>
+    <div>
+        <% @task_lists.each do |task_list| %>
+        <div class="d-flex justify-content-between">
+            <%= link_to "#{task_list.name}", "/task_lists/show/#{task_list.id}" %>
+            <div>
+                <%= link_to "編集", "/task_lists/edit/#{task_list.id}" %>
+                <%= link_to "削除", "/task_lists/#{task_list.id}/destroy", method: "post" %>
+            </div>
+        </div>
+    <% end %>
+    </div>
+</section>
