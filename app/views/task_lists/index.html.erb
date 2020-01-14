@@ -6,6 +6,11 @@
         <%= link_to "タスクリスト作成", "/task_lists/new" %>   
     </div>
     <div>
+        <% if flash[:notice]%>
+            <%= flash[:notice] %>
+        <% end %>
+    </div>
+    <div>
         <% @task_lists.each do |task_list| %>
         <div class="d-flex justify-content-between">
             <%= link_to "#{task_list.name}", "/task_lists/show/#{task_list.id}" %>

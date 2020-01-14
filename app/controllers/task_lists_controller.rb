@@ -14,6 +14,7 @@ class TaskListsController < ApplicationController
   def create
     @task_list = TaskList.new(name: params[:name])
     if @task_list.save
+      flash[:notice] = "タスクリストを追加しました" 
       redirect_to("/task_lists/index")
     else
       render("/task_lists/new")
@@ -28,6 +29,7 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.find_by(id: params[:id])
     @task_list.name = params[:name]
     if @task_list.save
+      flash[:notice] = "タスクリストを更新しました"
       redirect_to("/task_lists/index")
     else
       render("/task_lists/edit")
@@ -37,6 +39,7 @@ class TaskListsController < ApplicationController
   def destroy
     @task_list = TaskList.find_by(id: params[:id])
     @task_list.destroy
+    flash[:notice] = "タスクリストを削除しました"
     redirect_to("/task_lists/index")
   end
 
