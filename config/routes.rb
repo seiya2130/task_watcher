@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  post 'tasks/:id/destroy', to:'tasks#destroy'
+  get 'tasks/:id', to:'tasks#edit'
+  patch 'tasks/:id', to:'tasks#update'
   get 'task_lists/:id/new', to:'tasks#new'
   post 'task_lists/:id/new', to:'tasks#create'
-  get 'tasks/edit'
   get 'task_lists/index', to:'task_lists#index'
   get 'task_lists/show/:id', to:'task_lists#show'
   get 'task_lists/new', to:'task_lists#new'

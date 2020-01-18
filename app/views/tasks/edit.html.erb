@@ -1,2 +1,14 @@
 <h1>Tasks#edit</h1>
 <p>Find me in app/views/tasks/edit.html.erb</p>
+<%= form_for(@task,url: "/tasks/#{@task.id}") do |f| %>
+    <%= f.label :タスク名 %>
+    <%= f.text_field :name, value: @task.name %>
+    <br>
+    <%= f.label :状態 %>
+    <%= f.text_field :status, value: @task.status %>
+    <br>
+    <%= f.label :期限 %>
+    <%= f.date_select :dead_line, use_month_numbers: true, value: @task.dead_line%>
+    <br>
+    <%= f.submit '更新' %>
+<% end %>
