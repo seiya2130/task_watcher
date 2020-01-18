@@ -1,6 +1,7 @@
 <h1>TaskLists#show</h1>
 <p>Find me in app/views/task_lists/show.html.erb</p>
 <%= @task_list.name %>
+<%= link_to "タスク作成", "/task_lists/#{@task_list.id}/new" %>
 <br>
 <% @tasks.each do |task| %>
     <%= task.name %>
