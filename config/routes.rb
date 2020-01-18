@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tasks/new'
+  get 'tasks/edit'
   get 'task_lists/index', to:'task_lists#index'
   get 'task_lists/show/:id', to:'task_lists#show'
   get 'task_lists/new', to:'task_lists#new'
