@@ -1,3 +1,7 @@
 <h1>TaskLists#show</h1>
 <p>Find me in app/views/task_lists/show.html.erb</p>
 <%= @task_list.name %>
+<br>
+<% @tasks.each do |task| %>
+    <%= task.name %>
+<% end %>
