@@ -7,8 +7,11 @@ class TasksController < ApplicationController
   def create
     @task_list = TaskList.find_by(id: params[:id])
     @task = @task_list.tasks.build(task_params)
-    @task.save
-    redirect_to("/task_lists/show/#{@task_list.id}")
+    if @task.save
+      redirect_to("/task_lists/show/#{@task_list.id}")
+    else
+      render("/tasks/new")
+    end
   end
 
   def edit
@@ -18,8 +21,11 @@ class TasksController < ApplicationController
   def update
     @task = Task.find_by(id: params[:id])
     @task.update(task_params)
-    @task.save
-    redirect_to("/tasks/#{@task.id}")
+    if @task.save
+      redirect_to("/tasks/#{@task.id}")
+    else
+      render("/tasks/edit")
+    end
   end
 
   def destroy

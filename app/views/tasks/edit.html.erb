@@ -1,11 +1,16 @@
 <h1>Tasks#edit</h1>
 <p>Find me in app/views/tasks/edit.html.erb</p>
+<% if @task.errors.full_messages %>
+    <% @task.errors.full_messages.each do |message| %>
+        <%= message %>
+    <% end %>
+<% end %>
 <%= form_for(@task,url: "/tasks/#{@task.id}") do |f| %>
     <%= f.label :タスク名 %>
     <%= f.text_field :name, value: @task.name %>
     <br>
     <%= f.label :状態 %>
-    <%= f.text_field :status, value: @task.status %>
+    <%= f.select :status, [["未着手","未着手"],["進行中","進行中"],["完了","完了"]] %>
     <br>
     <%= f.label :期限 %>
     <%= f.date_select :dead_line, use_month_numbers: true, value: @task.dead_line%>
