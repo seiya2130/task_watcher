@@ -1,5 +1,8 @@
 <h1>Tasks#edit</h1>
 <p>Find me in app/views/tasks/edit.html.erb</p>
+<% if flash[:notice]%>
+    <%= flash[:notice] %>
+<% end %>
 <% if @task.errors.full_messages %>
     <% @task.errors.full_messages.each do |message| %>
         <%= message %>

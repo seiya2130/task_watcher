@@ -3,6 +3,9 @@
 <%= @task_list.name %>
 <%= link_to "タスク作成", "/task_lists/#{@task_list.id}/new" %>
 <br>
+<% if flash[:notice]%>
+    <%= flash[:notice] %>
+<% end %>
 <% @tasks.each do |task| %>
     <%= link_to task.name, "/tasks/#{task.id}" %> 
     <%= link_to "削除", "/tasks/#{task.id}/destroy", method: "post" %> 

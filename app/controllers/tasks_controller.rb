@@ -8,6 +8,7 @@ class TasksController < ApplicationController
     @task_list = TaskList.find_by(id: params[:id])
     @task = @task_list.tasks.build(task_params)
     if @task.save
+      flash[:notice] = "タスクを作成しました"
       redirect_to("/task_lists/show/#{@task_list.id}")
     else
       render("/tasks/new")
@@ -22,6 +23,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
     @task.update(task_params)
     if @task.save
+      flash[:notice] = "タスクを更新しました"
       redirect_to("/tasks/#{@task.id}")
     else
       render("/tasks/edit")
@@ -32,6 +34,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
     @task_list = TaskList.find_by(id: @task.task_list)
     @task.destroy
+    flash[:notice] = "タスクを削除しました"
     redirect_to("/task_lists/show/#{@task_list.id}")
   end
 
