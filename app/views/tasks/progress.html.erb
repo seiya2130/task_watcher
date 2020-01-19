@@ -1,0 +1,15 @@
+
+<% @task_lists.each do |task_list| %>
+    <div>
+        <%= link_to task_list.name, "/task_lists/show/#{task_list.id}" %> 
+    </div>
+    <% @tasks.each do |task| %>    
+        <% if task.task_list_id == task_list.id%>
+            <div>
+                <%= link_to task.name, "/tasks/#{task.id}" %>     
+            </div>
+        <% end %>            
+    <% end %>
+<% end %>
+
+    

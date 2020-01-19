@@ -38,6 +38,24 @@ class TasksController < ApplicationController
     redirect_to("/task_lists/show/#{@task_list.id}")
   end
 
+  def progress
+    @tasks = Task.where(status: 1)
+    @all_task_lists = TaskList.all
+    @task_lists = []
+
+    @all_task_lists.each do |task_list|
+      @tasks.each do |task|
+        if task_list.id == task.task_list_id
+          @task_lists.push(task_list)
+        end
+      end
+    end
+
+    @task_lists.uniq!
+    
+  end
+
+
   private
 
   def task_params

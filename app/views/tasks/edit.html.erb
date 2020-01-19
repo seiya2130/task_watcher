@@ -3,17 +3,15 @@
 <% if flash[:notice]%>
     <%= flash[:notice] %>
 <% end %>
-<% if @task.errors.full_messages %>
-    <% @task.errors.full_messages.each do |message| %>
-        <%= message %>
-    <% end %>
+<% @task.errors.full_messages.each do |message| %>
+    <%= message %>
 <% end %>
 <%= form_for(@task,url: "/tasks/#{@task.id}") do |f| %>
     <%= f.label :タスク名 %>
     <%= f.text_field :name, value: @task.name %>
     <br>
     <%= f.label :状態 %>
-    <%= f.select :status, [["未着手","未着手"],["進行中","進行中"],["完了","完了"]] %>
+    <%= f.select :status, [["未着手",0],["進行中",1],["完了",2]] %>
     <br>
     <%= f.label :期限 %>
     <%= f.date_select :dead_line, use_month_numbers: true, value: @task.dead_line%>
