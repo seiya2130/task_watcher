@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'tasks/progress', to:'tasks#progress'
   post 'tasks/:id/destroy', to:'tasks#destroy'
   get 'tasks/:id', to:'tasks#edit'
   patch 'tasks/:id', to:'tasks#update'
