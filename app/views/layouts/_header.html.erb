@@ -1,17 +1,17 @@
-
-<header>
+<header class="py-3 bg-header">
     <div class="container d-flex justify-content-between">
         <div>
             <div>
-                <%= link_to "TaskWatch", "/" %> 
+                <%= link_to "TaskWatch", "/" , { class: "header-text text-white" }%> 
             </div>
         </div>
         <div class="d-flex">
-            <div>
-                <%= link_to "進行中タスク一覧", "/tasks/progress" %> 
+            <div class="mx-3 ">
+                <%= link_to "進行中タスク一覧", "/tasks/progress", { class: "text-white" } %> 
             </div>
-            <div>登録タスク一覧</div>
-            <div>ログイン/ログアウト</div>
+            <div class="mx-3 align-middle">
+                <%= link_to "登録タスク一覧", "/task_lists/index", { class: "text-white" } %> 
+            </div>
         </div>
     </div>
 </header>
