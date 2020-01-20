@@ -1,22 +1,21 @@
 <section class="container">
-    <div class="text-center">
-        <p>検索機能</p>
-    </div>
-    <div class="text-left">
-        <%= link_to "タスクリスト作成", "/task_lists/new" %>   
-    </div>
-    <div>
+    <div class="text-center my-3">
         <% if flash[:notice]%>
-            <%= flash[:notice] %>
-        <% end %>
+            <div class="msg standard mb-3">
+                <%= flash[:notice] %>
+            </div>
+        <% end %>    
+        <%= link_to "タスクリスト作成", "/task_lists/new", class: "btn standard" %>   
     </div>
     <div>
         <% @task_lists.each do |task_list| %>
-        <div class="d-flex justify-content-between">
-            <%= link_to "#{task_list.name}", "/task_lists/show/#{task_list.id}" %>
+        <div class="d-flex justify-content-between py-3 border-bottom">
             <div>
-                <%= link_to "編集", "/task_lists/edit/#{task_list.id}" %>
-                <%= link_to "削除", "/task_lists/#{task_list.id}/destroy", method: "post" %>
+                <%= link_to "#{task_list.name}", "/task_lists/show/#{task_list.id}" %>
+            </div>
+            <div>
+                <%= link_to "編集", "/task_lists/edit/#{task_list.id}", class: "btn standard" %>
+                <%= link_to "削除", "/task_lists/#{task_list.id}/destroy", method: "post",class: "btn delete" %>
             </div>
         </div>
     <% end %>

@@ -27,11 +27,42 @@
     font-size: 1.2rem
 }
 
+/*
+    task_lists/index.html.erb
+*/
 
 
 /*
-
-共通クラス
-
+    共通クラス
 */
 
+//ボタン
+
+.btn {
+    padding: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid;
+
+    &.standard{
+        color: lightseagreen;
+        border-color: lightseagreen;
+    }
+
+    &.delete{
+        color: lightcoral;
+        border-color: lightcoral;
+    }
+}
+
+//メッセージ
+
+.msg {
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid;
+    &.standard {
+        color:  white;
+        background-color: #FFB032;
+    }
+}
