@@ -2,15 +2,15 @@
     <div class="container d-flex justify-content-between">
         <div>
             <div>
-                <%= link_to "TaskWatch", "/" , { class: "header-text text-white" }%> 
+                <%= link_to "TaskWatch", "/" , class: "header-text text-white"%> 
             </div>
         </div>
         <div class="d-flex">
-            <div class="mx-3 ">
-                <%= link_to "進行中タスク一覧", "/tasks/progress", { class: "text-white" } %> 
+            <div class="mx-3">
+                <%= link_to "進行中タスク一覧", "/tasks/progress", class: "text-white" %> 
             </div>
-            <div class="mx-3 align-middle">
-                <%= link_to "登録タスク一覧", "/task_lists/index", { class: "text-white" } %> 
+            <div class="mx-3">
+                <%= link_to "タスクリスト一覧", "/task_lists/index", class: "text-white" %> 
             </div>
         </div>
     </div>
