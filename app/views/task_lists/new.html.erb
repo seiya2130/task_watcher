@@ -1,11 +1,15 @@
-<h1>TaskLists#new</h1>
-<p>Find me in app/views/task_lists/new.html.erb</p>
-<% if @task_list.errors.full_messages %>
-<% @task_list.errors.full_messages.each do |message| %>
-    <%= message %>
-<% end %>
-<% end %>
-<%= form_for("/task_lists/create",method: "post") do %>
-    <input name="name" value="<%= @task_list.name%>"/>
-    <input type="submit" text="登録">
-<% end %>
+<section class="container">
+    <% @task_list.errors.full_messages.each do |message| %>
+        <div class="msg error my-3">
+            <%= message %>
+        </div>    
+    <% end %>
+    <div class="text-center my-3 py-3">
+        <p>タスクリスト名を入力してください</p>
+        <%= form_tag("/task_lists/new") do %>
+            <input class="form w-50" type="text" name="name" value="<% @task_list.name %>">
+            <br>
+            <input type="submit" class="btn standard mt-3" value="作成">
+        <% end %>
+    </div>
+</section>

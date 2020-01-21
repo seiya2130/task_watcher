@@ -14,6 +14,7 @@ class TaskListsController < ApplicationController
 
   def create
     @task_list = TaskList.new(name: params[:name])
+    @task_list.name = params[:name]
     if @task_list.save
       flash[:notice] = "タスクリストを追加しました" 
       redirect_to("/task_lists/index")
