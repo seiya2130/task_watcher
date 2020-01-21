@@ -7,7 +7,7 @@
     <div class="text-center my-3 py-3">
         <p>タスクリスト名を入力してください</p>
         <%= form_tag("/task_lists/new") do %>
-            <input class="form w-50" type="text" name="name">
+            <input class="form w-50" type="text" name="name" value="<% @task_list.name %>">
             <br>
             <input type="submit" class="btn standard mt-3" value="作成">
         <% end %>

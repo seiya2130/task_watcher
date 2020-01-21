@@ -1,9 +1,15 @@
-<h1>TaskLists#edit</h1>
-<p>Find me in app/views/task_lists/edit.html.erb</p>
-<% @task_list.errors.full_messages.each do |message| %>
-    <%= message %>
-<% end %>
-<%= form_tag("/task_lists/#{@task_list.id}/update") do %>
-    <input name="name" value="<%= @task_list.name %>"/>
-    <input type="submit" text="登録">
-<% end %>
+<section class="container">
+    <% @task_list.errors.full_messages.each do |message| %>
+        <div class="msg error my-3">
+            <%= message %>
+        </div>    
+    <% end %>
+    <div class="text-center my-3 py-3">
+        <p>タスクリスト名を編集してください</p>
+        <%= form_tag("/task_lists/#{@task_list.id}/update") do %>
+            <input name="name" value="<%= @task_list.name %>" class="form w-50" />
+            <br>
+            <input type="submit" class="btn standard mt-3" value="更新">
+        <% end %>
+    </div>
+</section>
