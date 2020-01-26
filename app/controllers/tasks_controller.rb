@@ -24,7 +24,7 @@ class TasksController < ApplicationController
     @task.update(task_params)
     if @task.save
       flash[:notice] = "タスクを更新しました"
-      redirect_to("/tasks/#{@task.id}")
+      redirect_to("/task_lists/show/#{@task.task_list_id}")
     else
       render("/tasks/edit")
     end
