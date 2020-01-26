@@ -15,7 +15,7 @@
         </div>
         <div class="my-3">
             <%= f.label :状態, class:"d-block" %>
-            <%= f.select :status, [["未着手","未着手"],["進行中","進行中"],["完了","完了"]],{}, {class: 'form bg-white'} %>
+            <%= f.select :status, [["未着手",0],["進行中",1],["完了",2]],{}, {class: 'form bg-white'} %>
         </div>
         <div class="my-3">
             <%= f.label :期限 , class:"d-block" %>
