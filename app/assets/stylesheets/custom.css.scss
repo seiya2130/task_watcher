@@ -1,3 +1,7 @@
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 /*
     _header.html.erb
 */
@@ -20,8 +24,14 @@
 */
 
 .top-space {
-    padding: 20rem 5rem;
+    padding: 20rem 5rem;   
 }
+
+.reverse {
+    background-color: lightseagreen;
+    color: white;
+}
+
 
 .top-sub-title {
     font-size: 1.2rem
