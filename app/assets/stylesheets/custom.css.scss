@@ -28,9 +28,13 @@
 }
 
 /*
-    task_lists/index.html.erb
+    task_lists/show.html.erb
 */
 
+table {
+    width: 100%;
+    table-layout: fixed;
+}
 
 /*
     共通クラス
