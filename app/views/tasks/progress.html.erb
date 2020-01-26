@@ -1,15 +1,17 @@
-
-<% @task_lists.each do |task_list| %>
-    <div>
-        <%= link_to task_list.name, "/task_lists/show/#{task_list.id}" %> 
-    </div>
-    <% @tasks.each do |task| %>    
-        <% if task.task_list_id == task_list.id%>
-            <div>
-                <%= link_to task.name, "/tasks/#{task.id}" %>     
-            </div>
-        <% end %>            
-    <% end %>
-<% end %>
-
+<section class="container">
+    <table class="mt-3">        
+        <tr class="border-bottom">
+            <th>タスクリスト名</th>
+            <th>タスク名</th>
+            <th>期限</th>
+        </tr>
+        <% @tasks.each do |task| %>
+            <tr class="border-bottom">
+                <td class="my-3 py-3"><%= link_to task.task_list.name, "/task_lists/show/#{task.task_list_id}" %> </td>
+                <td class="my-3 py-3"><%= link_to task.name, "/tasks/#{task.id}" %></td>
+                <td class="my-3 py-3"><%= convert_date(task.dead_line) %></td>
+            </tr>
+        <% end %>
+    </table>
+</section>
     
