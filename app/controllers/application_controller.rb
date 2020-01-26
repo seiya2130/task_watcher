@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       end
     
       def convert_date(date)
-        return date.strftime("%Y年%m月%d日")
+        return date.strftime("%Y/%m/%d")
       end
     
 end
