@@ -1,19 +1,27 @@
-<h1>Tasks#new</h1>
-<p>Find me in app/views/tasks/new.html.erb</p>
-<% if @task.errors.full_messages %>
+<section class="container">
     <% @task.errors.full_messages.each do |message| %>
-        <%= message %>
+        <div class="msg error my-3">
+            <%= message %>
+        </div>
     <% end %>
-<% end %>
-<%= form_for(@task,url: "/task_lists/#{@task_list.id}/new") do |f| %>
-    <%= f.label :タスク名 %>
-    <%= f.text_field :name %>
-    <br>
-    <%= f.label :状態 %>
-    <%= f.select :status, [["未着手","未着手"],["進行中","進行中"],["完了","完了"]] %>
-    <br>
-    <%= f.label :期限 %>
-    <%= f.date_select :dead_line, use_month_numbers: true %>
-    <br>
-    <%= f.submit '作成' %>
-<% end %>
+    <div class="text-center mt-3">
+        <span>タスクの情報を入力してください</span>
+    </div>
+    <div class="text-center py-3">
+        <%= form_for(@task,url: "/task_lists/#{@task_list.id}/new") do |f| %>    
+        <div class="my-3">
+            <%= f.label :タスク名 , class:"d-block" %>
+            <%= f.text_field :name , class:"form w-50" %>
+        </div>
+        <div class="my-3">
+            <%= f.label :状態, class:"d-block" %>
+            <%= f.select :status, [["未着手","未着手"],["進行中","進行中"],["完了","完了"]],{}, {class: 'form bg-white'} %>
+        </div>
+        <div class="my-3">
+            <%= f.label :期限 , class:"d-block" %>
+            <%= f.date_select :dead_line,{use_month_numbers: true,date_separator: '/'}, {class: 'form bg-white'} %>
+        </div>
+        <%= f.submit '作成', class: "btn standard" %>
+        <% end %>
+    </div>
+</section>
