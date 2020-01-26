@@ -15,12 +15,14 @@
             <th>タスク名</th>
             <th>状態</th>
             <th>期限</th>
+            <th></th>
         </tr>
         <% @tasks.each do |task| %>
             <tr class="border-bottom">
                 <td class="my-3 py-3"><%= link_to task.name, "/tasks/#{task.id}" %></td>
                 <td class="my-3 py-3"><%= convert_status(task.status) %></td>
                 <td class="my-3 py-3"><%= convert_date(task.dead_line) %></td>
+                <td class="my-3 py-3"><%= link_to "削除", "/tasks/#{task.id}/destroy",method:"post", class: "btn delete" %></td>
             </tr>
         <% end %>
     </table>
