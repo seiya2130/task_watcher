@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      task_list: タスクリスト
+      task: タスク 
+    attributes:
+      task_list:
+        id: ID
+        name: タスクリスト名
+        created_at: 登録日時
+        updated_at: 更新日時
+      task:
+        id: ID
+        name: タスク名
+        status: 状態
+        dead_line: 期限
+        created_at: 登録日時
+        updated_at: 更新日時
