@@ -70,6 +70,7 @@ gem  'bootstrap', '~> 4.3.1'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
+gem 'bcrypt',         '3.1.12'
 
 group :production do
   gem 'pg'
