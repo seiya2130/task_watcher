@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get  '/users/:id',  to: 'users#show'
+  get  '/signup',  to: 'users#new'
+  post '/signup',  to: 'users#create'
   get 'tasks/progress', to:'tasks#progress'
   post 'tasks/:id/destroy', to:'tasks#destroy'
   get 'tasks/:id', to:'tasks#edit'
