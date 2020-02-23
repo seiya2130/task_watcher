@@ -1,0 +1,13 @@
+<section class="container">
+    <div class="text-center mt-3">
+        <p>ユーザー名</p>
+        <%= @user.name %>
+    </div>
+    <div class="text-center mt-3">
+        <p>メールアドレス</p>
+        <%= @user.email %>
+    </div>
+    <div class="text-center mt-3">
+        <%= link_to "編集", "/users/#{@user.id}/edit", class: "btn standard" %>
+    </div>
+</section>
