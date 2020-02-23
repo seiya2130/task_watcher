@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  patch '/users/:id',  to: 'users#update'
+  get  '/users/:id/edit',  to: 'users#edit'
+  get  '/users/:id',  to: 'users#show'
+  get  '/signup',  to: 'users#new'
+  post '/signup',  to: 'users#create'
   get 'tasks/progress', to:'tasks#progress'
   post 'tasks/:id/destroy', to:'tasks#destroy'
   get 'tasks/:id', to:'tasks#edit'
