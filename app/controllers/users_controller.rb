@@ -3,23 +3,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    if @user.save
-      redirect_to("/users/#{@user.id}") 
-    else
-      render("/users/edit")
-    end
-  end
-
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:notice] = "ユーザーを登録しました"
       redirect_to("/users/#{@user.id}") 
     else
       render('/users/new')
@@ -28,6 +15,21 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    if @user.save
+      flash[:notice] = "ユーザー情報を更新しました"
+      redirect_to("/users/#{@user.id}") 
+    else
+      render("/users/edit")
+    end
   end
 
   private
