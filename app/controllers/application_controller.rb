@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
+    include SessionsHelper
     helper_method :convert_status, :convert_date
-
     def convert_status(status)
         if status == "0"
           return "未着手"

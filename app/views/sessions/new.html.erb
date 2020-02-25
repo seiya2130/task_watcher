@@ -1,0 +1,25 @@
+<section class="container">
+    <div class="container">
+        <% if flash[:danger]%>
+            <div class="msg error my-3">
+                <%= flash[:danger] %>
+            </div>
+        <% end %>
+    </div>
+    <div class="text-center mt-3">
+        <span>ログイン情報を入力してください</span>
+    </div>
+    <div class="text-center py-3">
+         <%= form_for(:session, url: login_path) do |f| %>
+        <div class="my-3">
+            <%= f.label :メールアドレス , class:"d-block" %>
+            <%= f.email_field :email , class:"form w-50" %>
+        </div>
+        <div class="my-3">
+            <%= f.label :パスワード , class:"d-block" %>
+            <%= f.password_field :password , class:"form w-50" %>
+        </div>
+        <%= f.submit 'ログイン', class: "btn standard" %>
+        <% end %>
+    </div>
+</section>

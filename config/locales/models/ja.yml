@@ -3,6 +3,7 @@ ja:
     models:
       task_list: タスクリスト
       task: タスク 
+      user: ユーザー
     attributes:
       task_list:
         id: ID
@@ -16,3 +17,8 @@ ja:
         dead_line: 期限
         created_at: 登録日時
         updated_at: 更新日時
+      user:
+        id: ID
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
