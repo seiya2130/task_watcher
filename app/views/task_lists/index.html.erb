@@ -1,4 +1,9 @@
 <section class="container">
+    <% if flash[:danger]%>
+        <div class="msg error my-3">
+            <%= flash[:danger] %>
+        </div>
+    <% end %>
     <div class="text-center my-3">  
         <%= link_to "タスクリスト作成", "/task_lists/new", class: "btn standard" %>   
     </div>

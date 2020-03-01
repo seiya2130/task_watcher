@@ -1,6 +1,9 @@
 class TaskListsController < ApplicationController
+  before_action :logged_in_user
+  before_action :correct_user,only:[:edit,:update,:destroy]
+
   def index
-    @task_lists = TaskList.all
+    @task_lists = TaskList.where(user_id: @current_user)
   end
 
   def show
@@ -13,9 +16,7 @@ class TaskListsController < ApplicationController
   end
 
   def create
-    current_user
-    @user = User.find_by(id: log_in_user)
-    @task_list = @user.task_lists.build(name: params[:name])
+    @task_list = @current_user.task_lists.build(name: params[:name])
     if @task_list.save
       flash[:notice] = "タスクリストを追加しました" 
       redirect_to("/task_lists/index")
@@ -44,6 +45,14 @@ class TaskListsController < ApplicationController
     @task_list.destroy
     flash[:notice] = "タスクリストを削除しました"
     redirect_to("/task_lists/index")
+  end
+
+  def correct_user
+    @task_list = TaskList.find_by(id: params[:id])
+    if @task_list.user_id != @current_user.id
+      flash[:danger] = "権限がありません"
+      redirect_to("/task_lists/index")
+    end
   end
 
 end
