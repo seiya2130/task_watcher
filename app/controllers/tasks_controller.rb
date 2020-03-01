@@ -1,4 +1,7 @@
 class TasksController < ApplicationController
+  before_action :logged_in_user
+  before_action :correct_user,only:[:edit,:update,:destroy]
+
   def new
     @task_list = TaskList.find_by(id: params[:id])
     @task = @task_list.tasks.build
@@ -39,14 +42,14 @@ class TasksController < ApplicationController
   end
 
   def progress
+    @user_task_lists = TaskList.where(user_id: @current_user.id)
     @tasks = Task.where(status: 1)
-    @all_task_lists = TaskList.all
     @task_lists = []
 
-    @all_task_lists.each do |task_list|
+    @user_task_lists.each do |task_list|
       @tasks.each do |task|
         if task_list.id == task.task_list_id
-          @task_lists.push(task_list)
+          @task_lists.push(task)
         end
       end
     end
@@ -55,6 +58,14 @@ class TasksController < ApplicationController
     
   end
 
+  def correct_user
+    @task = Task.find_by(id: params[:id])
+    @task_list = TaskList.find_by(id: @task.task_list_id)
+    if @task_list.user_id != @current_user.id
+      flash[:danger] = "権限がありません"
+      redirect_to("/task_lists/index")
+    end
+  end
   
   private
 
