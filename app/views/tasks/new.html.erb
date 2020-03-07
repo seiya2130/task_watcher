@@ -8,20 +8,20 @@
         <span>タスクの情報を入力してください</span>
     </div>
     <div class="text-center py-3">
-        <%= form_for(@task,url: "/task_lists/#{@task_list.id}/new") do |f| %>    
-        <div class="my-3">
-            <%= f.label :タスク名 , class:"d-block" %>
-            <%= f.text_field :name , class:"form w-50" %>
-        </div>
-        <div class="my-3">
-            <%= f.label :状態, class:"d-block" %>
-            <%= f.select :status, [["未着手",0],["進行中",1],["完了",2]],{}, {class: 'form bg-white'} %>
-        </div>
-        <div class="my-3">
-            <%= f.label :期限 , class:"d-block" %>
-            <%= f.date_select :dead_line,{use_month_numbers: true,date_separator: '/'}, {class: 'form bg-white'} %>
-        </div>
-        <%= f.submit '作成', class: "btn standard" %>
+        <%= form_for(@task, url: task_list_tasks_path) do |f| %>    
+            <div class="my-3">
+                <%= f.label :タスク名 , class:"d-block" %>
+                <%= f.text_field :name , class:"form w-50" %>
+            </div>
+            <div class="my-3">
+                <%= f.label :状態, class:"d-block" %>
+                <%= f.select :status, [["未着手",0],["進行中",1],["完了",2]],{}, {class: 'form bg-white'} %>
+            </div>
+            <div class="my-3">
+                <%= f.label :期限 , class:"d-block" %>
+                <%= f.date_select :dead_line,{use_month_numbers: true,date_separator: '/'}, {class: 'form bg-white'} %>
+            </div>
+            <%= f.submit '作成', class: "btn standard" %>
         <% end %>
     </div>
 </section>

@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get 'tasks/:id', to:'tasks#edit'
   patch 'tasks/:id', to:'tasks#update'  
 
-  resources :task_lists 
+  resources :task_lists do
+    resources :tasks, except: [:index, :show], shallow: true
+  end
 
   get 'static_pages/top'  
   root to: 'static_pages#top'

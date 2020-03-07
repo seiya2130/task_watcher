@@ -4,7 +4,7 @@
             <%= @task_list.name %>    
         </h3>
         <div class="text-center">
-            <%= link_to "タスク作成", "/task_lists/#{@task_list.id}/new", class: "btn standard" %>   
+            <%= link_to "タスク作成", new_task_list_task_path(@task_list), class: "btn standard" %>   
         </div>
         <table class="mt-3">        
             <tr class="border-bottom">
