@@ -14,7 +14,7 @@
                 <%= link_to "進行中タスク一覧", "/tasks/progress", class: "text-white" %> 
             </div>
             <div class="mx-3">
-                <%= link_to "タスクリスト一覧", "/task_lists/index", class: "text-white" %> 
+                <%= link_to "タスクリスト一覧", task_lists_path, class: "text-white" %> 
             </div>
             <div class="mx-3">
                 <%= link_to "ログアウト", logout_path, class:"text-white", method: :delete %>

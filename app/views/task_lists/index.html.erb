@@ -11,7 +11,7 @@
         <% @task_lists.each do |task_list| %>
         <div class="d-flex justify-content-between py-3 border-bottom">
             <div>
-                <%= link_to "#{task_list.name}", "/task_lists/show/#{task_list.id}" %>
+                <%= link_to "#{task_list.name}", task_list_path(task_list) %>
             </div>
             <div>
                 <%= link_to "編集", "/task_lists/edit/#{task_list.id}", class: "btn standard" %>
