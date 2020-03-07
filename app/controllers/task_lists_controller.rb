@@ -16,12 +16,12 @@ class TaskListsController < ApplicationController
   end
 
   def create
-    @task_list = @current_user.task_lists.build(name: params[:name])
+    @task_list = @current_user.task_lists.build(task_list_params)
     if @task_list.save
       flash[:notice] = "タスクリストを追加しました" 
-      redirect_to("/task_lists/index")
+      redirect_to task_lists_path
     else
-      render("/task_lists/new")
+      render new_task_list_path
     end
   end
 
@@ -53,6 +53,12 @@ class TaskListsController < ApplicationController
       flash[:danger] = "権限がありません"
       redirect_to("/task_lists/index")
     end
+  end
+
+  private
+
+  def task_list_params
+    params.require(:task_list).permit(:name)
   end
 
 end

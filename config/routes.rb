@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   post 'task_lists/:id/new', to:'tasks#create'
 
   resources :task_lists 
-  get 'task_lists/new', to:'task_lists#new'
-  post 'task_lists/new', to:'task_lists#create'
   post 'task_lists/:id/update', to:'task_lists#update'
   get 'task_lists/edit/:id', to:'task_lists#edit'
   post 'task_lists/:id/destroy', to:'task_lists#destroy'
