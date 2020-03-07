@@ -3,18 +3,18 @@ class TasksController < ApplicationController
   before_action :correct_user,only:[:edit,:update,:destroy]
 
   def new
-    @task_list = TaskList.find_by(id: params[:id])
-    @task = @task_list.tasks.build
+    @task_list = TaskList.find_by(id: params[:task_list_id])
+    @task = @task_list.tasks.build(task_list_id: @task_list)
   end
 
   def create
-    @task_list = TaskList.find_by(id: params[:id])
+    @task_list = TaskList.find_by(id: params[:task_list_id])
     @task = @task_list.tasks.build(task_params)
     if @task.save
       flash[:notice] = "タスクを作成しました"
-      redirect_to("/task_lists/show/#{@task_list.id}")
+      redirect_to task_list_path(@task_list)
     else
-      render("/tasks/new")
+      render 'new'
     end
   end
 
