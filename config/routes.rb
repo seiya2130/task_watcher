@@ -12,13 +12,8 @@ Rails.application.routes.draw do
   post 'tasks/:id/destroy', to:'tasks#destroy'
   get 'tasks/:id', to:'tasks#edit'
   patch 'tasks/:id', to:'tasks#update'  
-  get 'task_lists/:id/new', to:'tasks#new'
-  post 'task_lists/:id/new', to:'tasks#create'
 
   resources :task_lists 
-  post 'task_lists/:id/update', to:'task_lists#update'
-  get 'task_lists/edit/:id', to:'task_lists#edit'
-  post 'task_lists/:id/destroy', to:'task_lists#destroy'
 
   get 'static_pages/top'  
   root to: 'static_pages#top'
