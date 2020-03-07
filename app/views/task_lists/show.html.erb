@@ -1,24 +1,28 @@
 <section class="container">
-    <h3 class="mt-3">
-        <%= @task_list.name %>    
-    </h3>
-    <div class="text-center">
-        <%= link_to "タスク作成", "/task_lists/#{@task_list.id}/new", class: "btn standard" %>   
-    </div>
-    <table class="mt-3">        
-        <tr class="border-bottom">
-            <th>タスク名</th>
-            <th>状態</th>
-            <th>期限</th>
-            <th></th>
-        </tr>
-        <% @tasks.each do |task| %>
+    <% if exist_task_list? %>
+        <h3 class="mt-3">
+            <%= @task_list.name %>    
+        </h3>
+        <div class="text-center">
+            <%= link_to "タスク作成", "/task_lists/#{@task_list.id}/new", class: "btn standard" %>   
+        </div>
+        <table class="mt-3">        
             <tr class="border-bottom">
-                <td class="my-3 py-3"><%= link_to task.name, "/tasks/#{task.id}" %></td>
-                <td class="my-3 py-3"><%= convert_status(task.status) %></td>
-                <td class="my-3 py-3"><%= convert_date(task.dead_line) %></td>
-                <td class="my-3 py-3"><%= link_to "削除", "/tasks/#{task.id}/destroy",method:"post", class: "btn delete" %></td>
+                <th>タスク名</th>
+                <th>状態</th>
+                <th>期限</th>
+                <th></th>
             </tr>
-        <% end %>
-    </table>
+            <% if exist_task? %>
+                <% @tasks.each do |task| %>
+                    <tr class="border-bottom">
+                        <td class="my-3 py-3"><%= link_to task.name, "/tasks/#{task.id}" %></td>
+                        <td class="my-3 py-3"><%= convert_status(task.status) %></td>
+                        <td class="my-3 py-3"><%= convert_date(task.dead_line) %></td>
+                        <td class="my-3 py-3"><%= link_to "削除", "/tasks/#{task.id}/destroy",method:"post", class: "btn delete" %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </table>
+    <% end %>
 </section>
