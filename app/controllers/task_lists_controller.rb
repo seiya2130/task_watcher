@@ -19,9 +19,9 @@ class TaskListsController < ApplicationController
     @task_list = @current_user.task_lists.build(task_list_params)
     if @task_list.save
       flash[:notice] = "タスクリストを追加しました" 
-      redirect_to task_lists_path
+      redirect_to action: 'index'
     else
-      render new_task_list_path
+      render 'new'
     end
   end
 
@@ -31,12 +31,12 @@ class TaskListsController < ApplicationController
 
   def update
     @task_list = TaskList.find_by(id: params[:id])
-    @task_list.name = params[:name]
+    @task_list.update(task_list_params)
     if @task_list.save
       flash[:notice] = "タスクリストを更新しました"
-      redirect_to("/task_lists/index")
+      redirect_to action: 'index' 
     else
-      render("/task_lists/edit")
+      render 'edit'
     end
   end
 
