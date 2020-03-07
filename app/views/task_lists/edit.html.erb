@@ -6,10 +6,11 @@
     <% end %>
     <div class="text-center my-3 py-3">
         <p>タスクリスト名を編集してください</p>
-        <%= form_tag("/task_lists/#{@task_list.id}/update") do %>
-            <input name="name" value="<%= @task_list.name %>" class="form w-50" />
-            <br>
-            <input type="submit" class="btn standard mt-3" value="更新">
+        <%= form_for(@task_list) do |f| %>
+            <div class="my-3">
+                <%= f.text_field :name , class:"form w-50" %>
+            </div>
+            <%= f.submit '作成', class: "btn standard mt-3" %>
         <% end %>
     </div>
 </section>
