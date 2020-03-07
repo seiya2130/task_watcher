@@ -44,7 +44,7 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.find_by(id: params[:id])
     @task_list.destroy
     flash[:notice] = "タスクリストを削除しました"
-    redirect_to("/task_lists/index")
+    redirect_to action: 'index'
   end
 
   def correct_user
