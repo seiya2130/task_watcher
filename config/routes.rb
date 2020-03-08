@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   
+  resources :users, only: [:show, :edit, :update]
   get '/tasks/progress', to:'tasks#progress'
   
   resources :task_lists do

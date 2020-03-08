@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in(@user)
       flash[:notice] = "ユーザーを登録しました"
-      redirect_to("/users/#{@user.id}") 
+      redirect_to @user
     else
       render('/users/new')
     end
