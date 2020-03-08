@@ -51,7 +51,7 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.find_by(id: params[:id])
     if @task_list.user_id != @current_user.id
       flash[:danger] = "権限がありません"
-      redirect_to("/task_lists/index")
+      redirect_to action: 'index'
     end
   end
 
