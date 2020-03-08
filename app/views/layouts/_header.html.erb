@@ -8,7 +8,7 @@
         <div class="d-flex">
             <% if logged_in? %>
             <div class="mx-3">
-                <%= link_to "#{@current_user.name}", "/users/#{@current_user.id}", class: "text-white" %> 
+                <%= link_to "#{@current_user.name}", user_path(@current_user), class: "text-white" %> 
             </div>
             <div class="mx-3">
                 <%= link_to "進行中タスク一覧", tasks_progress_path, class: "text-white" %> 
