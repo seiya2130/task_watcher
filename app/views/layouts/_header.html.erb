@@ -11,7 +11,7 @@
                 <%= link_to "#{@current_user.name}", "/users/#{@current_user.id}", class: "text-white" %> 
             </div>
             <div class="mx-3">
-                <%= link_to "進行中タスク一覧", "/tasks/progress", class: "text-white" %> 
+                <%= link_to "進行中タスク一覧", tasks_progress_path, class: "text-white" %> 
             </div>
             <div class="mx-3">
                 <%= link_to "タスクリスト一覧", task_lists_path, class: "text-white" %> 
