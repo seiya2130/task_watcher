@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     @task = @task_list.tasks.build(task_params)
     if @task.save
       flash[:notice] = "タスクを作成しました"
-      redirect_to task_list_path(@task_list)
+      redirect_to controller: 'task_lists', action: 'show', id: @task_list
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
     @task.update(task_params)
     if @task.save
       flash[:notice] = "タスクを更新しました"
-      redirect_to task_list_path(@task.task_list_id)
+      redirect_to controller: 'task_lists', action: 'show', id: @task.task_list_id
     else
       render 'edit'
     end
@@ -37,7 +37,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
     @task.destroy
     flash[:notice] = "タスクを削除しました"
-    redirect_to task_list_path(@task.task_list_id)
+    redirect_to controller: 'task_lists', action: 'show', id: @task.task_list_id
   end
 
   def progress
