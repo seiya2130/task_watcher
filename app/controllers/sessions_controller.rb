@@ -7,17 +7,17 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in(user)
       flash[:notice] = "ログインしました"
-      redirect_to("/users/#{user.id}") 
+      redirect_to controller: 'users', action: 'show', id: user
     else
       flash[:danger] = "メールアドレスまたはパスワードが誤っています"
-      render("/sessions/new")
+      render 'new'
     end
   end
 
   def destroy
     log_out
     flash[:notice] = "ログアウトしました"
-    redirect_to("/")
+    redirect_to root_path
   end
 
   def guest
@@ -26,9 +26,9 @@ class SessionsController < ApplicationController
       user = User.new(name:"ゲスト",email:"guest@guest.com",password:"cde34rfv")
       user.save
     end
-    log_in(user)
-    flash[:notice] = "ゲストユーザーでログインしました"
-    redirect_to("/users/#{user.id}") 
+      log_in(user)
+      flash[:notice] = "ゲストユーザーでログインしました"
+      redirect_to user
   end
 
 end
