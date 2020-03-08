@@ -16,10 +16,10 @@
             <% if exist_task? %>
                 <% @tasks.each do |task| %>
                     <tr class="border-bottom">
-                        <td class="my-3 py-3"><%= link_to task.name, "/tasks/#{task.id}" %></td>
+                        <td class="my-3 py-3"><%= link_to task.name, edit_task_path(task) %></td>
                         <td class="my-3 py-3"><%= convert_status(task.status) %></td>
                         <td class="my-3 py-3"><%= convert_date(task.dead_line) %></td>
-                        <td class="my-3 py-3"><%= link_to "削除", "/tasks/#{task.id}/destroy",method:"post", class: "btn delete" %></td>
+                        <td class="my-3 py-3"><%= link_to "削除", task_path(task), method: 'delete', class: "btn delete" %></td>
                     </tr>
                 <% end %>
             <% end %>
