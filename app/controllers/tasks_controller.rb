@@ -35,10 +35,9 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find_by(id: params[:id])
-    @task_list = TaskList.find_by(id: @task.task_list)
     @task.destroy
     flash[:notice] = "タスクを削除しました"
-    redirect_to("/task_lists/show/#{@task_list.id}")
+    redirect_to task_list_path(@task.task_list_id)
   end
 
   def progress
@@ -63,7 +62,7 @@ class TasksController < ApplicationController
     @task_list = TaskList.find_by(id: @task.task_list_id)
     if @task_list.user_id != @current_user.id
       flash[:danger] = "権限がありません"
-      redirect_to("/task_lists/index")
+      redirect_to controller: 'task_lists', action: 'index'
     end
   end
   
