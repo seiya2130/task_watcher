@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get  '/users/:id',  to: 'users#show'
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
-  #get 'tasks/progress', to:'tasks#progress'
+  
+  get '/tasks/progress', to:'tasks#progress'
   
   resources :task_lists do
     resources :tasks, except: [:index, :show], shallow: true

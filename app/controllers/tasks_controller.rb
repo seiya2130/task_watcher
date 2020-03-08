@@ -41,19 +41,15 @@ class TasksController < ApplicationController
   end
 
   def progress
-    @user_task_lists = TaskList.where(user_id: @current_user.id)
-    @tasks = Task.where(status: 1)
-    @task_lists = []
+    @task_lists = TaskList.where(user_id: @current_user.id)
+    @progress_tasks = []
 
-    @user_task_lists.each do |task_list|
-      @tasks.each do |task|
-        if task_list.id == task.task_list_id
-          @task_lists.push(task)
-        end
+    @task_lists.each do |task_list|
+      @task = Task.where(status: 1, task_list_id: task_list)
+      @task.each do |task| 
+        @progress_tasks.push(task)
       end
     end
-
-    @task_lists.uniq!
     
   end
 
