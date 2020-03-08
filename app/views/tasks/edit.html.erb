@@ -9,7 +9,7 @@
         <span>タスクの情報を編集してください</span>
     </div>
     <div class="text-center py-3">
-        <%= form_for(@task,url: "/tasks/#{@task.id}") do |f| %>
+        <%= form_for(@task) do |f| %>
             <div class="my-3">
                 <%= f.label :タスク名 ,  class:"d-block"%>
                 <%= f.text_field :name, value: @task.name ,class:"form w-50" %>
