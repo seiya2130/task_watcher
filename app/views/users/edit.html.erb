@@ -4,7 +4,7 @@
         <span>ユーザー情報を編集してください</span>
     </div>
     <div class="text-center py-3">
-         <%= form_for(@user, url: "/users/#{@user.id}") do |f| %>
+         <%= form_for(@user) do |f| %>
             <div class="my-3">
                 <%= f.label :ユーザー名 , class:"d-block" %>
                 <%= f.text_field :name , class:"form w-50" %>

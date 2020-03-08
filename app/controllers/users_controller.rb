@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       flash[:notice] = "ユーザーを登録しました"
       redirect_to @user
     else
-      render('/users/new')
+      render 'new'
     end
   end
 
@@ -27,9 +27,9 @@ class UsersController < ApplicationController
     @user.update(user_params)
     if @user.save
       flash[:notice] = "ユーザー情報を更新しました"
-      redirect_to("/users/#{@user.id}") 
+      redirect_to @user 
     else
-      render("/users/edit")
+      render 'edit'
     end
   end
 
