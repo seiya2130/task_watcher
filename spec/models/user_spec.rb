@@ -76,7 +76,7 @@ RSpec.describe User, type: :model do
       end
     end
     describe 'task_lists' do
-      it '複数タスクリストを持つ' do
+      it 'タスクリストを複数持つ' do
         user = create(:user)
         create(:task_list, user: user)
         create(:task_list, user: user)
