@@ -74,10 +74,6 @@ RSpec.describe "Users", type: :request do
             get edit_user_url(user)
             expect(response.body).to include user.name
         end
-        it 'メールアドレスが表示されていること' do
-            get edit_user_url(user)
-            expect(response.body).to include user.email
-        end
     end
     describe 'PUT #update' do
         let(:user) { create(:user) }
