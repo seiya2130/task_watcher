@@ -40,7 +40,7 @@ RSpec.describe "TaskLists", type: :request do
                 expect(response).to have_http_status(200)
             end
         end
-        describe 'GET #create' do
+        describe 'POST #create' do
             context 'パラメータが妥当な場合' do
                 it 'リクエストが成功すること' do
                     post task_lists_path, params: { task_list: attributes_for(:task_list_request) }
