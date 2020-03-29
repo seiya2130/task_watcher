@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "TaskLists", type: :request do
+RSpec.describe "Tasks", type: :request do
     context 'ログインしている' do
         let(:user){ create(:user) }
         before do
@@ -127,6 +127,27 @@ RSpec.describe "TaskLists", type: :request do
             it 'リダイレクトすること' do
                 delete task_path(task)
                 expect(response).to redirect_to task_list_path(task_list)
+            end
+        end
+        describe 'GET #progress' do
+            let(:user){ create(:user) }
+            let(:task_list){ user.task_lists.create(attributes_for(:task_list_request)) }
+            before do
+                post task_list_tasks_path(task_list), params: { task: attributes_for(:task_request) }
+                post task_list_tasks_path(task_list), params: { task: attributes_for(:task_request, name:'進行中タスク', status: 1) }
+            end
+            it 'リクエストが成功すること' do
+                get tasks_progress_path
+                expect(response).to have_http_status(200)
+            end
+            it '進行中タスクが表示されること' do
+                get tasks_progress_path
+                expect(response.body).to include '進行中タスク'
+            end
+            xit '進行中タスク以外のタスクが表示されないこと' do
+                get tasks_progress_path
+                binding.pry
+                expect(response.body).not_to include 'test'
             end
         end
     end
