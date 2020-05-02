@@ -10,8 +10,9 @@
   </head>
 
   <body>
-    <%= render partial: 'layouts/header' %>
+    <!-- <%= render partial: 'layouts/header' %> -->
     <%= render partial: 'layouts/flash_messages' %>
-    <%= yield %>
+    <!-- <%= yield %> -->
+    <%= javascript_pack_tag 'main' %>
   </body>
 </html>
