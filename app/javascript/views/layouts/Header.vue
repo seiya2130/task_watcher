@@ -6,29 +6,22 @@
                 <router-link to="/" active-class="header-text text-white">TaskWatch</router-link>
             </div>
         </div>
-        <div class="d-flex">
-            <!-- <% if logged_in? %>
+        <div v-if="loggedIn" class="d-flex">
                 <div class="mx-3">
-                    <%= link_to "#{@current_user.name}", user_path(@current_user), class: "text-white" %> 
+                    <router-link :to="{ name: 'UserShow', params: { id: userId }}" class="text-white">{{ userName }}</router-link>
                 </div>
                 <div class="mx-3">
-                    <%= link_to "進行中タスク一覧", tasks_progress_path, class: "text-white" %> 
+                    <router-link to="/login" class="text-white">進行中タスク一覧</router-link>
                 </div>
                 <div class="mx-3">
-                    <%= link_to "タスクリスト一覧", task_lists_path, class: "text-white" %> 
+                    <router-link to="/login" class="text-white">タスクリスト一覧</router-link>
                 </div>
                 <div class="mx-3">
-                    <%= link_to "ログアウト", logout_path, class:"text-white", method: 'delete' %>
+                    <button class="text-white" @click="logout">ログアウト</button>
                 </div>
-            <% else %>
+        </div>   
+        <div v-else class="d-flex">
                 <div class="mx-3">
-                    <%= link_to "ログイン", login_path, class:"text-white" %>
-                </div>
-                <div class="mx-3">
-                    <%= link_to "新規登録", signup_path, class:"text-white" %>
-                </div>
-            <% end %> -->
-            <div class="mx-3">
                 <router-link to="/login" class="text-white">ログイン</router-link>
             </div>
             <div class="mx-3">
@@ -40,7 +33,36 @@
 </template>
 
 <script>
+import http from '../../http'
+
 export default {
-    
+    computed: {
+        loggedIn: function(){
+            return this.$store.getters.stateLogin
+        },
+        userId: function(){
+            return this.$store.getters.stateUserId
+        },
+        userName: function(){
+            return this.$store.getters.stateUserName
+        },
+    },
+    methods:{
+        logout: function(){
+            http
+            .delete(`/api/v1/sessions/${this.$store.getters.stateUserId}`)
+            .then(response => {
+            this.$store.dispatch('setErrorsMessage',[])
+            this.$router.push({ name: 'Top' });
+            this.$store.dispatch('setMessage','ログアウトしました')
+            this.$store.dispatch('setUserId','')
+            this.$store.dispatch('setUserName','')
+            this.$store.dispatch('login',false)
+            })
+            .catch(error => {
+            console.error(error);
+            });
+        },
+    }
 }
 </script>

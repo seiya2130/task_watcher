@@ -36,6 +36,13 @@ export default {
     http
       .get(`/api/v1/users/${this.$route.params.id}.json`)
       .then(response => (this.user = response.data))
+      .catch(error => {
+        console.error(error);
+        if (error.response.data && error.response.data.errors) {
+            this.$router.push({ name: 'Top'});
+            this.$store.dispatch('setErrorsMessage',error.response.data.errors) 
+        }
+    })
   },
     methods: {
         updateUser: function() {
@@ -49,8 +56,9 @@ export default {
                 }
             })
             .then(response => {
-                this.$router.push({ name: 'UserShow', params: { id: this.user.id } });
-                this.$store.dispatch('setMessage','ユーザー情報を更新しました')
+                let e = response.data;
+                this.$router.push({ name: 'UserShow', params: { id: e.user.id } });
+                this.$store.dispatch('setMessage',e.message)
             })
             .catch(error => {
                 console.error(error);

@@ -5,6 +5,7 @@ import UserNew from './views/users/UserNew'
 import UserShow from './views/users/UserShow'
 import UserEdit from './views/users/UserEdit'
 import NotFoundPage from './views/layouts/NotFoundPage'
+import SessionNew from './views/sessions/SessionNew'
 import store from './store'
 
 Vue.use(Router)
@@ -14,10 +15,7 @@ const router =  new Router({
   routes: [
     {
         path: '/',
-        component: Top
-    },
-    {
-        path: '/login',
+        name: 'Top',
         component: Top
     },
     {
@@ -34,6 +32,10 @@ const router =  new Router({
       name: 'UserEdit',
       component: UserEdit
     },
+    { 
+      path: '/login',
+      component: SessionNew
+    },
     {
       path: '*',
       component: NotFoundPage
@@ -49,7 +51,6 @@ router.beforeEach((to, from, next) => {
     store.dispatch('setErrorsMessage',[])
   }
   next()
-
 });
 
 export default router

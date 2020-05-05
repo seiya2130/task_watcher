@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  #セッション
-  post '/guest_login', to:'sessions#guest'
-  get '/login', to:'sessions#new'
-  post '/login', to:'sessions#create'
-  delete '/logout', to:'sessions#destroy'
-    
   #タスクリスト・タスク
   resources :task_lists do
     resources :tasks, except: [:index, :show], shallow: true
@@ -14,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api, {format: 'json'} do
     namespace :v1 do
       resources :users, only: [:create, :show,:update,]
+      resources :sessions, only: [:create,:destroy]
     end
   end
 

@@ -26,6 +26,13 @@ export default {
     http
       .get(`/api/v1/users/${this.$route.params.id}.json`)
       .then(response => (this.user = response.data))
+      .catch(error => {
+          console.error(error);
+          this.$router.push({ name: 'Top' });
+          if (error.response.data && error.response.data.errors) {
+            this.$store.dispatch('setErrorsMessage',error.response.data.errors)
+          }
+        })
   }
 }
 </script>
