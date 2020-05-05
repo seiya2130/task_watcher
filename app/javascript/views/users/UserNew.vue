@@ -46,8 +46,8 @@ export default {
         })
         .then(response => {
           let e = response.data;
-          this.$router.push({ name: 'UserShow', params: { id: e.id } });
-          this.$store.dispatch('setMessage','ユーザーを登録しました')
+          this.$router.push({ name: 'UserShow', params: { id: e.user.id } });
+          this.$store.dispatch('setMessage',e.message)
         })
         .catch(error => {
           console.error(error);

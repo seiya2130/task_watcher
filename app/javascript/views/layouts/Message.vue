@@ -15,7 +15,7 @@ export default {
     computed:{
         existMessage: function(){
             let message = this.$store.getters.stateMessage
-            if(message != ''){
+            if(message.length > 0){
                 this.message = message
                 return true
             }else{

@@ -5,9 +5,8 @@ class ApplicationController < ActionController::Base
 
     def logged_in_user
       unless logged_in?
-        flash[:danger] = "ログインが必要です"
-        redirect_to login_url
-      end
+        render json: { errors: ["ログインしていません"] }, status: :unauthorized
+      end 
     end
 
     def convert_status(status)
@@ -18,7 +17,6 @@ class ApplicationController < ActionController::Base
         elsif status == "2"
           return "完了"
         end
-    
     end
     
     def convert_date(date)
