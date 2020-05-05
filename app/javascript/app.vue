@@ -1,12 +1,16 @@
 <template>
   <div id="app">
     <Header></Header>
+    <Message></Message>
+    <ErrorsMessage></ErrorsMessage>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Header from './views/layouts/Header'
+import Message from './views/layouts/Message'
+import ErrorsMessage from './views/layouts/ErrorsMessage'
 
 export default {
   data: function () {
@@ -15,7 +19,9 @@ export default {
     }
   },
   components:{ 
-    Header
+    Header,
+    Message,
+    ErrorsMessage
   }
 }
 </script>

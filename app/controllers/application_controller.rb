@@ -25,4 +25,5 @@ class ApplicationController < ActionController::Base
       return date.strftime("%Y/%m/%d")
     end
     
+    
 end
