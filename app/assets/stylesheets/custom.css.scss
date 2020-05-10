@@ -100,3 +100,19 @@ table {
         background-color:#DD4A58;
     }
 }
+
+//datapicker
+
+.datepicker {
+    div > input {
+        display: block;
+        margin: auto;
+        text-align: center;
+        border: 1px solid lightgray;
+        border-radius: 0.5rem;
+        padding: 0.3rem;
+    }
+    .vdp-datepicker__calendar{
+        left: 36.5%
+    }
+}
