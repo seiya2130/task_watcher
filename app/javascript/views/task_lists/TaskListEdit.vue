@@ -23,7 +23,7 @@ export default {
   mounted () {
     http
     .get(`/api/v1/task_lists/${this.$route.params.id}.json`)
-    .then(response => (this.taskList = response.data))
+    .then(response => (this.taskList = response.data.taskList))
     .catch(error => {
         console.error(error);
         if (error.response.data && error.response.data.errors) {
