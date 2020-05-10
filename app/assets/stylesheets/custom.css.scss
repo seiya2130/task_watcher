@@ -116,3 +116,14 @@ table {
         left: 36.5%
     }
 }
+
+// ログアウトボタン
+
+button.text-white {
+    background: none;
+    border: none;
+
+    &:hover{
+        text-decoration: underline
+    }
+}
