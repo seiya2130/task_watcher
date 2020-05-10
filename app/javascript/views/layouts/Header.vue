@@ -67,11 +67,4 @@ export default {
 }
 </script>
 <style scoped>
-button.text-white {
-    background: none;
-    border: none;
-}
-button.text-white:hover {
-    text-decoration: underline
-}
 </style>
