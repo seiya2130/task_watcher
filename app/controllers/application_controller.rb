@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
     def logged_in_user
       unless logged_in?
-        render json: { errors: ["ログインしていません"] }, status: :unauthorized
+        render json: { errors: ["ログインが必要です"] }, status: :unauthorized
       end 
     end
 

@@ -7,21 +7,21 @@
             </div>
         </div>
         <div v-if="loggedIn" class="d-flex">
-                <div class="mx-3">
-                    <router-link :to="{ name: 'UserShow', params: { id: userId }}" class="text-white">{{ userName }}</router-link>
-                </div>
-                <div class="mx-3">
-                    <router-link to="/login" class="text-white">進行中タスク一覧</router-link>
-                </div>
-                <div class="mx-3">
-                    <router-link to="/login" class="text-white">タスクリスト一覧</router-link>
-                </div>
-                <div class="mx-3">
-                    <button class="text-white" @click="logout">ログアウト</button>
-                </div>
+            <div class="mx-3">
+                <router-link :to="{ name: 'UserShow', params: { id: userId }}" class="text-white">{{ userName }}</router-link>
+            </div>
+            <div class="mx-3">
+                <router-link :to="{ name: 'TaskProgress'}" class="text-white">進行中タスク一覧</router-link>
+            </div>
+            <div class="mx-3">
+                <router-link :to="{ name: 'TaskListIndex'}" class="text-white">タスクリスト一覧</router-link>
+            </div>
+            <div class="mx-3">
+                <a><button class="text-white" @click="logout">ログアウト</button></a>
+            </div>
         </div>   
         <div v-else class="d-flex">
-                <div class="mx-3">
+            <div class="mx-3">
                 <router-link to="/login" class="text-white">ログイン</router-link>
             </div>
             <div class="mx-3">
@@ -66,3 +66,12 @@ export default {
     }
 }
 </script>
+<style scoped>
+button.text-white {
+    background: none;
+    border: none;
+}
+button.text-white:hover {
+    text-decoration: underline
+}
+</style>

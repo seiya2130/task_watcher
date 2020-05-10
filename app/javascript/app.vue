@@ -15,7 +15,6 @@ import ErrorsMessage from './views/layouts/ErrorsMessage'
 export default {
   data: function () {
     return {
-      message: "Hello Vue!"
     }
   },
   components:{ 
