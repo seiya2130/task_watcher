@@ -23,7 +23,6 @@
                         <td class="my-3 py-3">
                             <span v-if="countDownFlg" :id="index">
                                 {{ timers[index] }}
-                                <!-- {{ getTimers(index) }} -->
                             </span>
                             <span v-else :id="index">
                                 {{ convertDate(task.dead_line) }}
@@ -106,9 +105,6 @@ export default {
       refresh: function(){
         this.timer = setTimeout(this.recalc, 1000);
       },
-      getTimers: function(i){
-          return this.timers[i]
-      }
   },
   mounted () {
     http
