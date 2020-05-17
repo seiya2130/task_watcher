@@ -1,14 +1,14 @@
 class Api::V1::TaskListsController < ApplicationController
     before_action :logged_in_user
-    before_action :correct_user,only:[:show,:edit,:update,:destroy]
-  
-    def new
-      head :ok
-    end
+    before_action :correct_user,only:[:show,:update,:destroy]
 
     def index
       @task_lists = TaskList.where(user_id: @current_user)
       render json: @task_lists
+    end
+      
+    def new
+      head :ok
     end
   
     def show
@@ -24,10 +24,6 @@ class Api::V1::TaskListsController < ApplicationController
       else
         render json: { errors: @task_list.errors.full_messages }, status: :unprocessable_entity
       end
-    end
-  
-    def edit  
-      @task_list = TaskList.find_by(id: params[:id])
     end
   
     def update

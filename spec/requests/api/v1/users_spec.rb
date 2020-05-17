@@ -22,14 +22,6 @@ RSpec.describe "Users", type: :request do
                 subject { -> { get api_v1_user_path 2 } }
                 it { is_expected.to raise_error(NoMethodError) }
             end
-            context '権限がない場合' do
-                it 'エラーメッセージがセットされること' do
-                    create(:user2)
-                    get api_v1_user_path(2)
-                    json = JSON.parse(response.body)
-                    expect(json['errors']).to include('権限がありません')
-                end
-            end
         end
         describe 'PATCH #update' do
             before do
@@ -115,8 +107,18 @@ RSpec.describe "Users", type: :request do
                 get api_v1_user_path(1)
                 json = JSON.parse(response.body)
                 expect(json).to include('errors'); 
-                binding.pry 
             end
+        end
+    end
+    context '権限がない' do
+        before do
+            post api_v1_users_path, params: { user: attributes_for(:user) }
+        end
+        it 'エラーメッセージがセットされること' do
+            create(:user2)
+            get api_v1_user_path(2)
+            json = JSON.parse(response.body)
+            expect(json['errors']).to include('権限がありません')
         end
     end
 end
