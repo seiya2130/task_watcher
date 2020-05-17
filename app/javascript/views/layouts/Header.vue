@@ -52,9 +52,10 @@ export default {
             http
             .delete(`/api/v1/sessions/${this.$store.getters.stateUserId}`)
             .then(response => {
+            let e = response.data;
             this.$store.dispatch('setErrorsMessage',[])
             this.$router.push({ name: 'Top' });
-            this.$store.dispatch('setMessage','ログアウトしました')
+            this.$store.dispatch('setMessage',e.message)
             this.$store.dispatch('setUserId','')
             this.$store.dispatch('setUserName','')
             this.$store.dispatch('login',false)
