@@ -13,10 +13,11 @@
     "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "@vue/test-utils": "^1.0.3",
-    "babel-core": "^6.26.3",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^26.0.1",
-    "babel-preset-env": "^1.7.0",
     "jest": "^26.0.1",
     "vue-jest": "^3.0.5",
     "webpack-dev-server": "^3.10.3"
