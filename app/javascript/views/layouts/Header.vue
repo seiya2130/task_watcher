@@ -3,7 +3,7 @@
     <div class="container d-flex justify-content-between">
         <div>
             <div>
-                <router-link to="/" active-class="header-text text-white">TaskWatch</router-link>
+                <router-link to="/" class="header-text text-white">TaskWatch</router-link>
             </div>
         </div>
         <div v-if="loggedIn" class="d-flex">
@@ -52,12 +52,12 @@ export default {
             http
             .delete(`/api/v1/sessions/${this.$store.getters.stateUserId}`)
             .then(response => {
-            this.$store.dispatch('setErrorsMessage',[])
-            this.$router.push({ name: 'Top' });
-            this.$store.dispatch('setMessage','ログアウトしました')
-            this.$store.dispatch('setUserId','')
-            this.$store.dispatch('setUserName','')
-            this.$store.dispatch('login',false)
+                this.$store.dispatch('setErrorsMessage',[])
+                this.$router.push({ name: 'Top' });
+                this.$store.dispatch('setMessage',response.data.message)
+                this.$store.dispatch('setUserId','')
+                this.$store.dispatch('setUserName','')
+                this.$store.dispatch('login',false)
             })
             .catch(error => {
             console.error(error);
