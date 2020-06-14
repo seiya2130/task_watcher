@@ -3,7 +3,7 @@
     <div class="container d-flex justify-content-between">
         <div>
             <div>
-                <router-link to="/" active-class="header-text text-white">TaskWatch</router-link>
+                <router-link to="/" class="header-text text-white">TaskWatch</router-link>
             </div>
         </div>
         <div v-if="loggedIn" class="d-flex">

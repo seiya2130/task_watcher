@@ -12,7 +12,7 @@ class Api::V1::SessionsController < ApplicationController
     
       def destroy
         log_out
-        render json: { message:'ログアウトしました'}
+        render json: { message: 'ログアウトしました'}
       end
 
   end

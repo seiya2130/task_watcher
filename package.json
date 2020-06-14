@@ -2,8 +2,11 @@
   "name": "task_watcher",
   "private": true,
   "dependencies": {
+    "@rails/ujs": "^6.0.3-1",
     "@rails/webpacker": "5.1.1",
     "axios": "^0.19.2",
+    "babel-loader": "^8.1.0",
+    "flush-promises": "^1.0.2",
     "vue": "^2.6.11",
     "vue-loader": "^15.9.1",
     "vue-router": "^3.1.6",
@@ -13,6 +16,33 @@
     "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.11.0"
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@vue/test-utils": "^1.0.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1",
+    "vue-jest": "^3.0.5",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/"
+    ]
   }
 }

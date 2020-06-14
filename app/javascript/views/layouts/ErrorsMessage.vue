@@ -2,8 +2,8 @@
     <ul v-if="existErrorsMessage" class="container">
       <li 
         class="msg error my-3"
-        v-for="e in errorsMessage" 
-        :key="e">
+        v-for="(e,index) in errorsMessage" 
+        :key="index">
         {{ e }}
       </li>
     </ul>
