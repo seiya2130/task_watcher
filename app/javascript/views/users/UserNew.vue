@@ -48,6 +48,10 @@ export default {
           let e = response.data;
           this.$router.push({ name: 'UserShow', params: { id: e.user.id } });
           this.$store.dispatch('setMessage',e.message)
+          this.$store.dispatch('setUserId',e.user.id)
+          this.$store.dispatch('setUserName',e.user.name)
+          this.$store.dispatch('setEmail',e.user.email)
+          this.$store.dispatch('login',true)
         })
         .catch(error => {
           console.error(error);

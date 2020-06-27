@@ -8,7 +8,7 @@
           <p>メールアドレス</p>
           <p>{{ user.email }}</p>
       </div>
-      <div class="text-center mt-3">
+      <div v-if="notGuestUser" class="text-center mt-3">
         <router-link class="btn standard" :to="{ name: 'UserEdit', params: { id: user.id }}">編集</router-link>
       </div>
   </section>
@@ -20,6 +20,16 @@ export default {
   data: function () {
     return {
       user: {}
+    }
+  },
+  computed: {
+    notGuestUser: function(){
+      let email = this.$store.getters.stateEmail
+      if(email == 'guestuser@guestuser.com'){
+        return false
+      }else{
+        return true
+      }
     }
   },
   mounted () {

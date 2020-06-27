@@ -34,15 +34,22 @@ export default {
   },
   mounted () {
     http
-      .get(`/api/v1/users/${this.$route.params.id}.json`)
-      .then(response => (this.user = response.data))
-      .catch(error => {
-        console.error(error);
-        if (error.response.data && error.response.data.errors) {
-            this.$router.push({ name: 'Top'});
-            this.$store.dispatch('setErrorsMessage',error.response.data.errors) 
-        }
-    })
+        .get(`/api/v1/users/${this.$route.params.id}.json`)
+        .then(response => {
+            let email = response.data.email
+            if(email == 'guestuser@guestuser.com'){
+                this.$router.push({ name: 'Top'});
+                this.$store.dispatch('setErrorsMessage',['ゲストユーザーの情報は編集できません'])
+            }
+            this.user = response.data
+        })
+        .catch(error => {
+            console.error(error);
+            if (error.response.data && error.response.data.errors) {
+                this.$router.push({ name: 'Top'});
+                this.$store.dispatch('setErrorsMessage',error.response.data.errors) 
+            }
+        })
   },
     methods: {
         updateUser: function() {

@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state:{
         userId: '',
         userName: '',
+        email: '',
         login: false,
         message:'',
         errorsMessage:[],
@@ -24,6 +25,9 @@ export default new Vuex.Store({
         },
         stateUserName: state => {
             return state.userName
+        },
+        stateEmail: state => {
+            return state.email
         },
         stateLogin: state => {
             return state.login
@@ -42,6 +46,9 @@ export default new Vuex.Store({
         setUserName(state,name){
             state.userName = name
         },
+        setEmail(state,email){
+            state.email = email
+        },
         login(state,flg){
             state.login = flg
         }
@@ -58,6 +65,9 @@ export default new Vuex.Store({
         },
         setUserName({ commit },name){
             commit('setUserName',name)
+        },
+        setEmail({ commit },email){
+            commit('setEmail',email)
         },
         login({ commit },flg){
             commit('login',flg)
