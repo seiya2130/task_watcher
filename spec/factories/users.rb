@@ -11,7 +11,7 @@ FactoryBot.define do
     end
     factory :guest, class: User do
       name { 'ゲスト' }
-      email { 'guest@guest.com' }
-      password { 'cde34rfv' }
+      email { 'guestuser@guestuser.com' }
+      password { 'vfr43edc' }
     end
   end

@@ -61,6 +61,26 @@ RSpec.describe "Users", type: :request do
                     expect(json['errors']).to be_present
                 end
             end
+            context 'ゲストユーザーの場合' do
+                before do
+                    post api_v1_users_path, params: { user: attributes_for(:guest) }
+                    @guest = User.find(2)
+                end
+                it 'リクエストが成功すること' do
+                    patch api_v1_user_path(@guest), params: { user: attributes_for(:guest, password: 'vfr45tgb') }
+                    expect(response).to have_http_status(401)
+                end
+                it 'ユーザー名が変更されないこと' do
+                    expect { 
+                        patch api_v1_user_path(@guest), params: { user: attributes_for(:guest, password: 'vfr45tgb') }
+                    }.not_to change { User.find(@guest.id)}
+                end
+                it 'エラーメッセージがセットされること' do
+                    patch api_v1_user_path(@guest), params: { user: attributes_for(:guest, password: 'vfr45tgb') }
+                    json = JSON.parse(response.body)
+                    expect(json['errors']).to be_present
+                end
+            end
         end
     end
     context 'ログインしていない' do

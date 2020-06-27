@@ -34,8 +34,8 @@ export default {
    methods: {
        login: function(guest) {
         if(guest === 'guest'){
-            this.session.email = 'guest@guest.com'
-            this.session.password = 'vfr45tgb'
+            this.session.email = 'guestuser@guestuser.com'
+            this.session.password = 'vfr43edc'
         }
         http
         .post('/api/v1/sessions', 
@@ -51,6 +51,7 @@ export default {
           this.$store.dispatch('setMessage',e.message)
           this.$store.dispatch('setUserId',e.user.id)
           this.$store.dispatch('setUserName',e.user.name)
+          this.$store.dispatch('setEmail',e.user.email)
           this.$store.dispatch('login',true)
         })
         .catch(error => {
