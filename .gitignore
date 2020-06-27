@@ -29,8 +29,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-
-# /public/packs
+# herokuへデプロイの時は/public/packsを追跡対象に含める
+/public/packs
 /public/packs-test
 /node_modules
 /yarn-error.log
