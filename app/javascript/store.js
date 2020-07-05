@@ -4,7 +4,8 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+// export default new Vuex.Store({
+    export default {
     state:{
         userId: '',
         userName: '',
@@ -74,4 +75,4 @@ export default new Vuex.Store({
         },
     },
     plugins: [createPersistedState({storage: window.sessionStorage,key: 'TaskWatch'})]
-})
+}

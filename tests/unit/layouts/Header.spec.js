@@ -3,22 +3,23 @@ import Vuex from 'vuex'
 import Header from '../../../app/javascript/views/layouts/Header.vue'
 import VueRouter from 'vue-router';
 import flushPromises from 'flush-promises'
-import axios from 'axios';
-
+import { cloneDeep } from "lodash";
+import storeConfig from './../../../app/javascript/store'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 localVue.use(VueRouter);
-jest.mock('axios')
 
-axios.delete.mockResolvedValue({data:'test'});
+jest.mock("../../../app/javascript/http", () => ({
+    delete: jest.fn(() => Promise.resolve({ data: { message : 'ログアウトしました' } })),
+}));
 
 describe('Header', () => {
     describe('ログインしている場合', () => {
         let state
         let getters
         let actions
-        let store        
+        let store
         let wrapper
         let testId = 1
         let testName = 'test'
@@ -52,19 +53,24 @@ describe('Header', () => {
 
             actions = {
                 setErrorsMessage: jest.fn(),
+                setUserName: jest.fn(),
+                setUserId: jest.fn(),
+                setMessage: jest.fn(),
+                login: jest.fn(),
             }
-      
-            store = new Vuex.Store({
-                state,
-                getters,
-            })
+            
+            store = new Vuex.Store(cloneDeep(storeConfig))
+            // store = new Vuex.Store({
+            //     state,
+            //     getters,
+            //     actions
+            // })
 
             wrapper = shallowMount(Header, { store, localVue,
                 stubs: {
                     RouterLink: RouterLinkStub
                   },
                   router,
-                  actions,
             })
         })
 
@@ -98,8 +104,6 @@ describe('Header', () => {
 
         describe('logout', () =>{
             
-            
-
             // beforeEach( async () => {
             //     wrapper.find('button').trigger('click')
             //     await flushPromises()
