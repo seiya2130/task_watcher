@@ -5,66 +5,30 @@ import VueRouter from 'vue-router';
 import flushPromises from 'flush-promises'
 import { cloneDeep } from "lodash";
 import storeConfig from './../../../app/javascript/store'
+import router from '../../../app/javascript/router'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 localVue.use(VueRouter);
+let store = undefined
+let wrapper = undefined
 
 jest.mock("../../../app/javascript/http", () => ({
     delete: jest.fn(() => Promise.resolve({ data: { message : 'ログアウトしました' } })),
 }));
 
+let testId = 1
+let testName = 'test'
+
 describe('Header', () => {
     describe('ログインしている場合', () => {
-        let state
-        let getters
-        let actions
-        let store
-        let wrapper
-        let testId = 1
-        let testName = 'test'
 
-        beforeEach(() => {
-
-            const router = new VueRouter({
-                routes: [
-                  {
-                    name: 'UserShow',
-                    path: '/user/:id'
-                  }
-                ]
-              });
-
-            state = {
-                userId: testId,
-                userName: testName,
-                login: true,
-                message:'',
-                errorsMessage:[]
-            }
-
-            getters = {
-                stateUserId: () =>  state.userId,
-                stateUserName: () =>  state.userName,  
-                stateLogin: () =>  state.login,
-                stateMessage: () => state.message,
-                stateErrorsMessage: () => state.errorsMessage
-            }
-
-            actions = {
-                setErrorsMessage: jest.fn(),
-                setUserName: jest.fn(),
-                setUserId: jest.fn(),
-                setMessage: jest.fn(),
-                login: jest.fn(),
-            }
+        beforeEach( async () => {
             
             store = new Vuex.Store(cloneDeep(storeConfig))
-            // store = new Vuex.Store({
-            //     state,
-            //     getters,
-            //     actions
-            // })
+            store.state.userId = testId 
+            store.state.userName= testName
+            store.state.login = true
 
             wrapper = shallowMount(Header, { store, localVue,
                 stubs: {
@@ -72,6 +36,10 @@ describe('Header', () => {
                   },
                   router,
             })
+            
+            router.push({ name: 'UserShow', params: { id: testId }}).catch(err => {})
+            await flushPromises()
+            
         })
 
         describe('loggedIn', () =>{
@@ -85,7 +53,7 @@ describe('Header', () => {
                 expect(wrapper.vm.userId).toBe(testId)
             })
             it('戻り値がセットされること', () => {
-                const links = wrapper.findAll(RouterLinkStub)
+                const links = wrapper.findAllComponents(RouterLinkStub)
                 const userNameTag = links.at(1)
                 expect(userNameTag.props().to.params.id).toBe(testId)
             })
@@ -96,33 +64,65 @@ describe('Header', () => {
                 expect(wrapper.vm.userName).toBe(testName)
             })
             it('戻り値が描画されること', () => {
-                const links = wrapper.findAll(RouterLinkStub)
+                const links = wrapper.findAllComponents(RouterLinkStub)
                 const userNameTag = links.at(1)
                 expect(userNameTag.text()).toBe(testName)
             })
         })
 
         describe('logout', () =>{
-            
-            // beforeEach( async () => {
-            //     wrapper.find('button').trigger('click')
-            //     await flushPromises()
-            // })
-            // // モックを作る必要がある
+            beforeEach( async () => {
+                try {
+                    wrapper.find('button').trigger('click')                    
+                    await flushPromises()
+                } catch (e) {
+                    console.error(e);
+                }
+            })  
 
-            it('戻り値が返却されること', async () => {
-                wrapper.find('button').trigger('click')
-                await flushPromises()
-                expect(actions.setErrorsMessage).toHaveBeenCalled()
+            describe('setErrorsMessage', ()=> {
+                it('戻り値がセットされること',  () => {
+                    expect(store.getters.stateErrorsMessage).toEqual([])
+               })
+            })
+
+            describe('router.push', ()=> {
+                it('routeが変更されること',  () => {
+                    expect(wrapper.vm.$route.name).toBe('Top')
+               })
+            })
+
+            describe('setMessage', ()=> {
+                it('戻り値がセットされること',  () => {
+                    expect(store.getters.stateMessage).toBeDefined()
+               })
+            })
+
+            describe('setUserId', ()=> {
+                it('値が変更されること',  () => {
+                    expect(store.getters.stateUserId).toBe('')
+               })
+            })
+
+            describe('setUserId', ()=> {
+                it('値が変更されること',  () => {
+                    expect(store.getters.stateUserName).toBe('')
+               })
+            })
+
+            describe('setUserId', ()=> {
+                it('値が変更されること',  () => {
+                    expect(store.getters.stateLogin).toBeFalsy()
+               })
             })
         })
 
-        describe('router-linkのtoプロパティに値がセットされているか', () => {
+        describe('router-linkのtoプロパティに値がセットされている', () => {
 
             let links
 
             beforeEach(() => {
-                links = wrapper.findAll(RouterLinkStub)
+                links = wrapper.findAllComponents(RouterLinkStub)
             })
 
             it('/', () => {
@@ -144,6 +144,48 @@ describe('Header', () => {
                 const link = links.at(3)
                 expect(link.props().to.name).toBe('TaskListIndex')
             })   
+        })
+    })
+
+    describe('ログアウトしている場合', ()=>{
+        
+        beforeEach( async() => {
+            
+            store = new Vuex.Store(cloneDeep(storeConfig))
+            
+            wrapper = shallowMount(Header, { store, localVue,
+                stubs: {
+                    RouterLink: RouterLinkStub
+                  },
+                  router,
+            })
+ 
+            router.push({ name: 'UserShow', params: { id: testId }}).catch(err => {})
+            await flushPromises()
+        })
+
+        describe('router-linkのtoプロパティに値がセットされている', () => {
+
+            let links
+
+            beforeEach(() => {
+                links = wrapper.findAllComponents(RouterLinkStub)
+            })
+
+            it('/', () => {
+                const link = links.at(0)
+                expect(link.props().to).toBe('/')
+            })
+
+            it('/login', () => { 
+                const link = links.at(1)
+                expect(link.props().to).toBe('/login')
+            })
+
+            it('/signup', () => { 
+                const link = links.at(2)
+                expect(link.props().to).toBe('/signup')
+            })
         })
     })
 })

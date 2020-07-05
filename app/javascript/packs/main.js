@@ -8,7 +8,12 @@
 import Vue from 'vue'
 import App from '../app.vue'
 import router from '../router'
-import store from '../store'
+import storeConfig from '../store'
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store(storeConfig)
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

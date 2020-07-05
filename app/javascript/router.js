@@ -13,7 +13,7 @@ import TaskListShow from './views/task_lists/TaskListShow'
 import TaskNew from './views/tasks/TaskNew'
 import TaskEdit from './views/tasks/TaskEdit'
 import TaskProgress from './views/tasks/TaskProgress'
-import store from './store'
+import { store } from './packs/main'
 
 Vue.use(Router)
 
