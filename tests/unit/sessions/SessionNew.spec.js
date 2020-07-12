@@ -47,11 +47,11 @@ describe('SessionNew', () => {
                     email: testEmail
                 }
             }
-            mockAxios.onPost('/api/v1/sessions').reply(200, response)
 
             describe('通常ユーザー', () => {
 
                 beforeEach( async () => {
+                    mockAxios.onPost('/api/v1/sessions').reply(200, response)
                     const inputs = wrapper.findAll('input')
 
                     inputs.at(0).setValue(testEmail)
@@ -103,27 +103,6 @@ describe('SessionNew', () => {
                     })
                 })
 
-            })
-
-            describe('ゲストユーザー', () => {
-    
-                beforeEach( async () => {
-                    // 値をセット
-                    // ボタン桜花
-                    // flushpromise
-
-                })
-
-                // it('戻り値が返却されること', () => {
-                //     expect(wrapper.vm.loggedIn).toBeTruthy()
-                // })
-
-                // routerpush
-                // メッセージ
-                // ID
-                // 名前
-                // email
-                // login
             })
         })
 
