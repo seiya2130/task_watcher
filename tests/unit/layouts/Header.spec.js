@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue, RouterLinkStub, mount } from '@vue/test-utils'
+import { shallowMount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Header from '../../../app/javascript/views/layouts/Header.vue'
 import VueRouter from 'vue-router';
@@ -104,13 +104,13 @@ describe('Header', () => {
                })
             })
 
-            describe('setUserId', ()=> {
+            describe('setUserName', ()=> {
                 it('値が変更されること',  () => {
                     expect(store.getters.stateUserName).toBe('')
                })
             })
 
-            describe('setUserId', ()=> {
+            describe('setLogin', ()=> {
                 it('値が変更されること',  () => {
                     expect(store.getters.stateLogin).toBeFalsy()
                })
