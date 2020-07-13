@@ -32,35 +32,32 @@ export default {
        }
    },
    methods: {
-       login: function(guest) {
-        if(guest === 'guest'){
-            this.session.email = 'guestuser@guestuser.com'
-            this.session.password = 'vfr43edc'
-        }
-        http
-        .post('/api/v1/sessions', 
-         {
+        login: function(guest) {
+            if(guest === 'guest'){
+                this.session.email = 'guestuser@guestuser.com'
+                this.session.password = 'vfr43edc'
+            }
+        http.post('/api/v1/sessions', 
+        {
             session: {
                 email: this.session.email,
                 password: this.session.password
             }
+        }).then( response => {
+            let e = response.data;
+            this.$router.push({ name: 'UserShow', params: { id: e.user.id } });
+            this.$store.dispatch('setMessage',e.message)
+            this.$store.dispatch('setUserId',e.user.id)
+            this.$store.dispatch('setUserName',e.user.name)
+            this.$store.dispatch('setEmail',e.user.email)
+            this.$store.dispatch('login',true)
+        }).catch(error => {
+            console.error(error);
+            if (error.response.data && error.response.data.errors) {
+                this.$store.dispatch('setErrorsMessage', error.response.data.errors)
+            }
         })
-        .then(response => {
-          let e = response.data;
-          this.$router.push({ name: 'UserShow', params: { id: e.user.id } });
-          this.$store.dispatch('setMessage',e.message)
-          this.$store.dispatch('setUserId',e.user.id)
-          this.$store.dispatch('setUserName',e.user.name)
-          this.$store.dispatch('setEmail',e.user.email)
-          this.$store.dispatch('login',true)
-        })
-        .catch(error => {
-          console.error(error);
-          if (error.response.data && error.response.data.errors) {
-            this.$store.dispatch('setErrorsMessage', error.response.data.errors)
-          }
-        });
-       }
-   }
+        }
+    }
 }
 </script>

@@ -36,6 +36,10 @@
 import http from '../../http'
 
 export default {
+   data: function() {
+       return {
+       }
+   },
     computed: {
         loggedIn: function(){
             return this.$store.getters.stateLogin
@@ -63,7 +67,7 @@ export default {
             .catch(error => {
             console.error(error);
             });
-        },
+        }
     }
 }
 </script>

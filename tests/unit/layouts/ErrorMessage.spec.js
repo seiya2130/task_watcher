@@ -1,33 +1,22 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import ErrorsMessage from '../../../app/javascript/views/layouts/ErrorsMessage.vue'
+import { cloneDeep } from "lodash";
+import storeConfig from './../../../app/javascript/store'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
+let store = undefined
+let wrapper = undefined
 
 describe('ErrorsMessage', () => {
     describe('メッセージがある場合', () => {
-        let state
-        let getters
-        let store       
-        let wrapper 
+
         let msg = 'エラーメッセージ'
-        
 
         beforeEach(() => {
-            state = {
-                errorsMessage:[msg]
-            }
-
-            getters = {
-                stateErrorsMessage: () => state.errorsMessage
-            }
-      
-            store = new Vuex.Store({
-                state,
-                getters
-            })
-
+            store = new Vuex.Store(cloneDeep(storeConfig))
+            store.state.errorsMessage.push(msg)
             wrapper = shallowMount(ErrorsMessage, { store, localVue })
         })
 
@@ -46,26 +35,9 @@ describe('ErrorsMessage', () => {
     })
 
     describe('メッセージがない場合', () => {
-        let state
-        let getters
-        let store       
-        let wrapper 
-        
 
         beforeEach(() => {
-            state = {
-                errorsMessage:[]
-            }
-
-            getters = {
-                stateErrorsMessage: () => state.errorsMessage
-            }
-      
-            store = new Vuex.Store({
-                state,
-                getters
-            })
-
+            store = new Vuex.Store(cloneDeep(storeConfig))
             wrapper = shallowMount(ErrorsMessage, { store, localVue })
         })
 
@@ -74,11 +46,11 @@ describe('ErrorsMessage', () => {
         })
 
         it('メッセージがセットされないこと', () => {
-            expect(wrapper.vm.errorsMessage.length).toBe(0)
+            expect(wrapper.vm.errorsMessage).toEqual([])
         })
 
         it('メッセージが描画されないこと', () => {
-            expect(wrapper.contains('li')).toBeFalsy()
+            expect(wrapper.find('li').exists()).toBeFalsy
         })
 
     })
