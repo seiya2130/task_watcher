@@ -2,11 +2,11 @@
   <section class="container">
       <div class="text-center mt-3">
           <p>ユーザー名</p>
-          <p>{{ user.name }}</p>
+          <p name="name">{{ user.name }}</p>
       </div>
       <div class="text-center mt-3">
           <p>メールアドレス</p>
-          <p>{{ user.email }}</p>
+          <p name="email">{{ user.email }}</p>
       </div>
       <div v-if="notGuestUser" class="text-center mt-3">
         <router-link class="btn standard" :to="{ name: 'UserEdit', params: { id: user.id }}">編集</router-link>
@@ -23,7 +23,7 @@ export default {
     }
   },
   computed: {
-    notGuestUser: function(){
+     notGuestUser: function(){
       let email = this.$store.getters.stateEmail
       if(email == 'guestuser@guestuser.com'){
         return false
