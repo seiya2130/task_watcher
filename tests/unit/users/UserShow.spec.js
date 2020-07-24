@@ -25,7 +25,7 @@ describe('UserShow', () => {
 
     describe('notGuestUser', ()=>{
 
-        describe('通常ユーザーの場合', ()=>{
+        describe('正常(通常ユーザー)', ()=>{
 
             beforeEach( async()=>{
 
@@ -76,7 +76,7 @@ describe('UserShow', () => {
 
         })
 
-        describe('ゲストユーザーの場合', ()=>{
+        describe('正常(ゲストユーザー)', ()=>{
 
             beforeEach( async()=>{
 
@@ -117,9 +117,9 @@ describe('UserShow', () => {
 
     })
 
-    describe('/api/v1/users/:id', ()=>{
+    describe('mounted', ()=>{
         
-        describe('ユーザー情報が取得できない場合', ()=>{
+        describe('エラー', ()=>{
 
             beforeEach( async()=>{
 
