@@ -54,7 +54,7 @@ export default {
     methods: {
         updateUser: function() {
             http
-            .patch(`/api/v1/users/${this.user.id}`, 
+            .patch(`/api/v1/users/${this.$route.params.id}`, 
             {
                 user: {
                     name: this.user.name,
